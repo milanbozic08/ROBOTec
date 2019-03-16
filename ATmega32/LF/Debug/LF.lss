@@ -1,0 +1,471 @@
+
+LF.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002ec  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000006  00800060  000002ec  00000380  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000006c  00800066  00800066  00000386  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000386  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003b8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000f0  00000000  00000000  000003f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000bde  00000000  00000000  000004e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007ae  00000000  00000000  000010c2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000065d  00000000  00000000  00001870  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000210  00000000  00000000  00001ed0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000480  00000000  00000000  000020e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000031b  00000000  00000000  00002560  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000c0  00000000  00000000  0000287b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 81 00 	jmp	0x102	; 0x102 <__vector_9>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 22 01 	jmp	0x244	; 0x244 <__vector_13>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ec ee       	ldi	r30, 0xEC	; 236
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a6 36       	cpi	r26, 0x66	; 102
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a6 e6       	ldi	r26, 0x66	; 102
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a2 3d       	cpi	r26, 0xD2	; 210
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 74 01 	jmp	0x2e8	; 0x2e8 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+
+
+int main(void)
+{
+	////UART INIT
+	uart_clear();
+  92:	0e 94 0f 01 	call	0x21e	; 0x21e <uart_clear>
+	Uart_inic();
+  96:	0e 94 f7 00 	call	0x1ee	; 0x1ee <Uart_inic>
+	////////////////
+	
+	///MOTOR INIT
+	timer1_init();
+  9a:	0e 94 53 00 	call	0xa6	; 0xa6 <timer1_init>
+	Motor_init();
+  9e:	0e 94 5e 00 	call	0xbc	; 0xbc <Motor_init>
+	///////////////////
+
+	sei();					// OBAVEZNO (Ukljucuje prekide)
+  a2:	78 94       	sei
+  a4:	ff cf       	rjmp	.-2      	; 0xa4 <main+0x12>
+
+000000a6 <timer1_init>:
+{
+	M_PWMLevi=X;
+}
+void MotorR_PWM_Set(int X)
+{
+	M_PWMDesni=X;
+  a6:	8e b5       	in	r24, 0x2e	; 46
+  a8:	82 60       	ori	r24, 0x02	; 2
+  aa:	8e bd       	out	0x2e, r24	; 46
+  ac:	8c ee       	ldi	r24, 0xEC	; 236
+  ae:	9f ef       	ldi	r25, 0xFF	; 255
+  b0:	9d bd       	out	0x2d, r25	; 45
+  b2:	8c bd       	out	0x2c, r24	; 44
+  b4:	89 b7       	in	r24, 0x39	; 57
+  b6:	84 60       	ori	r24, 0x04	; 4
+  b8:	89 bf       	out	0x39, r24	; 57
+  ba:	08 95       	ret
+
+000000bc <Motor_init>:
+  bc:	d4 9a       	sbi	0x1a, 4	; 26
+  be:	d5 9a       	sbi	0x1a, 5	; 26
+  c0:	d6 9a       	sbi	0x1a, 6	; 26
+  c2:	d7 9a       	sbi	0x1a, 7	; 26
+  c4:	dc 98       	cbi	0x1b, 4	; 27
+  c6:	dd 98       	cbi	0x1b, 5	; 27
+  c8:	de 98       	cbi	0x1b, 6	; 27
+  ca:	df 98       	cbi	0x1b, 7	; 27
+  cc:	08 95       	ret
+
+000000ce <M_Levi_OFF>:
+  ce:	dc 98       	cbi	0x1b, 4	; 27
+  d0:	dd 98       	cbi	0x1b, 5	; 27
+  d2:	08 95       	ret
+
+000000d4 <M_Levi_ON>:
+  d4:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <SmerL>
+  d8:	81 11       	cpse	r24, r1
+  da:	03 c0       	rjmp	.+6      	; 0xe2 <M_Levi_ON+0xe>
+  dc:	dc 98       	cbi	0x1b, 4	; 27
+  de:	dd 9a       	sbi	0x1b, 5	; 27
+  e0:	08 95       	ret
+  e2:	dc 9a       	sbi	0x1b, 4	; 27
+  e4:	dd 98       	cbi	0x1b, 5	; 27
+  e6:	08 95       	ret
+
+000000e8 <M_Desni_OFF>:
+  e8:	df 98       	cbi	0x1b, 7	; 27
+  ea:	de 98       	cbi	0x1b, 6	; 27
+  ec:	08 95       	ret
+
+000000ee <M_Desni_ON>:
+  ee:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <SmerR>
+  f2:	81 11       	cpse	r24, r1
+  f4:	03 c0       	rjmp	.+6      	; 0xfc <M_Desni_ON+0xe>
+  f6:	de 98       	cbi	0x1b, 6	; 27
+  f8:	df 9a       	sbi	0x1b, 7	; 27
+  fa:	08 95       	ret
+  fc:	de 9a       	sbi	0x1b, 6	; 27
+  fe:	df 98       	cbi	0x1b, 7	; 27
+ 100:	08 95       	ret
+
+00000102 <__vector_9>:
+	MotorR_PWM_Set(PWM);
+}
+
+
+ISR(TIMER1_OVF_vect)			// motori su na 50Hz sa rasponom PWM od 0-1000 na f od 8Mhz
+{
+ 102:	1f 92       	push	r1
+ 104:	0f 92       	push	r0
+ 106:	0f b6       	in	r0, 0x3f	; 63
+ 108:	0f 92       	push	r0
+ 10a:	11 24       	eor	r1, r1
+ 10c:	2f 93       	push	r18
+ 10e:	3f 93       	push	r19
+ 110:	4f 93       	push	r20
+ 112:	5f 93       	push	r21
+ 114:	6f 93       	push	r22
+ 116:	7f 93       	push	r23
+ 118:	8f 93       	push	r24
+ 11a:	9f 93       	push	r25
+ 11c:	af 93       	push	r26
+ 11e:	bf 93       	push	r27
+ 120:	ef 93       	push	r30
+ 122:	ff 93       	push	r31
+	cli();
+ 124:	f8 94       	cli
+	
+	TCNT1 = 65536-20;
+ 126:	8c ee       	ldi	r24, 0xEC	; 236
+ 128:	9f ef       	ldi	r25, 0xFF	; 255
+ 12a:	9d bd       	out	0x2d, r25	; 45
+ 12c:	8c bd       	out	0x2c, r24	; 44
+		tmr=0;
+	}*/
+	
+	
+	//////////Brojaci
+	M_TimerLevi++;
+ 12e:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <M_TimerLevi>
+ 132:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <M_TimerLevi+0x1>
+ 136:	01 96       	adiw	r24, 0x01	; 1
+ 138:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <M_TimerLevi+0x1>
+ 13c:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <M_TimerLevi>
+	M_TimerDesni++;
+ 140:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <__data_end>
+ 144:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <__data_end+0x1>
+ 148:	01 96       	adiw	r24, 0x01	; 1
+ 14a:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <__data_end+0x1>
+ 14e:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <__data_end>
+
+	/////////MOTOR Levi
+	if(M_TimerLevi==M_PWMLevi)
+ 152:	20 91 68 00 	lds	r18, 0x0068	; 0x800068 <M_TimerLevi>
+ 156:	30 91 69 00 	lds	r19, 0x0069	; 0x800069 <M_TimerLevi+0x1>
+ 15a:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <M_PWMLevi>
+ 15e:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <M_PWMLevi+0x1>
+ 162:	28 17       	cp	r18, r24
+ 164:	39 07       	cpc	r19, r25
+ 166:	11 f4       	brne	.+4      	; 0x16c <__vector_9+0x6a>
+	{
+		
+		M_Levi_OFF();
+ 168:	0e 94 67 00 	call	0xce	; 0xce <M_Levi_OFF>
+	}
+	if(M_TimerLevi>PWMRange && EnableMotors)
+ 16c:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <M_TimerLevi>
+ 170:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <M_TimerLevi+0x1>
+ 174:	89 3e       	cpi	r24, 0xE9	; 233
+ 176:	93 40       	sbci	r25, 0x03	; 3
+ 178:	54 f0       	brlt	.+20     	; 0x18e <__vector_9+0x8c>
+ 17a:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <EnableMotors>
+ 17e:	88 23       	and	r24, r24
+ 180:	31 f0       	breq	.+12     	; 0x18e <__vector_9+0x8c>
+	{
+		M_Levi_ON();
+ 182:	0e 94 6a 00 	call	0xd4	; 0xd4 <M_Levi_ON>
+		M_TimerLevi=0;
+ 186:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <M_TimerLevi+0x1>
+ 18a:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <M_TimerLevi>
+	}
+	//////////Motor Desni
+	if(M_TimerDesni==M_PWMDesni)
+ 18e:	20 91 66 00 	lds	r18, 0x0066	; 0x800066 <__data_end>
+ 192:	30 91 67 00 	lds	r19, 0x0067	; 0x800067 <__data_end+0x1>
+ 196:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <M_PWMDesni>
+ 19a:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <M_PWMDesni+0x1>
+ 19e:	28 17       	cp	r18, r24
+ 1a0:	39 07       	cpc	r19, r25
+ 1a2:	11 f4       	brne	.+4      	; 0x1a8 <__vector_9+0xa6>
+	{
+		M_Desni_OFF();
+ 1a4:	0e 94 74 00 	call	0xe8	; 0xe8 <M_Desni_OFF>
+	}
+	if(M_TimerDesni>PWMRange && EnableMotors)
+ 1a8:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <__data_end>
+ 1ac:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <__data_end+0x1>
+ 1b0:	89 3e       	cpi	r24, 0xE9	; 233
+ 1b2:	93 40       	sbci	r25, 0x03	; 3
+ 1b4:	54 f0       	brlt	.+20     	; 0x1ca <__vector_9+0xc8>
+ 1b6:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <EnableMotors>
+ 1ba:	88 23       	and	r24, r24
+ 1bc:	31 f0       	breq	.+12     	; 0x1ca <__vector_9+0xc8>
+	{
+		M_Desni_ON();
+ 1be:	0e 94 77 00 	call	0xee	; 0xee <M_Desni_ON>
+		M_TimerDesni=0;
+ 1c2:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <__data_end+0x1>
+ 1c6:	10 92 66 00 	sts	0x0066, r1	; 0x800066 <__data_end>
+	}
+
+
+
+
+	sei();
+ 1ca:	78 94       	sei
+ 1cc:	ff 91       	pop	r31
+ 1ce:	ef 91       	pop	r30
+ 1d0:	bf 91       	pop	r27
+ 1d2:	af 91       	pop	r26
+ 1d4:	9f 91       	pop	r25
+ 1d6:	8f 91       	pop	r24
+ 1d8:	7f 91       	pop	r23
+ 1da:	6f 91       	pop	r22
+ 1dc:	5f 91       	pop	r21
+ 1de:	4f 91       	pop	r20
+ 1e0:	3f 91       	pop	r19
+ 1e2:	2f 91       	pop	r18
+ 1e4:	0f 90       	pop	r0
+ 1e6:	0f be       	out	0x3f, r0	; 63
+ 1e8:	0f 90       	pop	r0
+ 1ea:	1f 90       	pop	r1
+ 1ec:	18 95       	reti
+
+000001ee <Uart_inic>:
+}
+
+bool uart_full()	// ako je false onda nista nije stiglo ...
+{
+	return ResivedOK;
+}
+ 1ee:	90 9a       	sbi	0x12, 0	; 18
+ 1f0:	88 98       	cbi	0x11, 0	; 17
+ 1f2:	89 9a       	sbi	0x11, 1	; 17
+ 1f4:	10 bc       	out	0x20, r1	; 32
+ 1f6:	87 e6       	ldi	r24, 0x67	; 103
+ 1f8:	89 b9       	out	0x09, r24	; 9
+ 1fa:	8a b1       	in	r24, 0x0a	; 10
+ 1fc:	88 61       	ori	r24, 0x18	; 24
+ 1fe:	8a b9       	out	0x0a, r24	; 10
+ 200:	57 9a       	sbi	0x0a, 7	; 10
+ 202:	80 b5       	in	r24, 0x20	; 32
+ 204:	86 68       	ori	r24, 0x86	; 134
+ 206:	80 bd       	out	0x20, r24	; 32
+ 208:	80 e0       	ldi	r24, 0x00	; 0
+ 20a:	90 e0       	ldi	r25, 0x00	; 0
+ 20c:	fc 01       	movw	r30, r24
+ 20e:	e2 59       	subi	r30, 0x92	; 146
+ 210:	ff 4f       	sbci	r31, 0xFF	; 255
+ 212:	10 82       	st	Z, r1
+ 214:	01 96       	adiw	r24, 0x01	; 1
+ 216:	84 36       	cpi	r24, 0x64	; 100
+ 218:	91 05       	cpc	r25, r1
+ 21a:	c1 f7       	brne	.-16     	; 0x20c <Uart_inic+0x1e>
+ 21c:	08 95       	ret
+
+0000021e <uart_clear>:
+
+void uart_clear()
+{
+	ResivedOK=false;
+ 21e:	10 92 6d 00 	sts	0x006D, r1	; 0x80006d <ResivedOK>
+	
+	for(int k=0;k<100;k++)
+ 222:	80 e0       	ldi	r24, 0x00	; 0
+ 224:	90 e0       	ldi	r25, 0x00	; 0
+	{
+		Resive[k]='\0';
+ 226:	fc 01       	movw	r30, r24
+ 228:	e2 59       	subi	r30, 0x92	; 146
+ 22a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 22c:	10 82       	st	Z, r1
+
+void uart_clear()
+{
+	ResivedOK=false;
+	
+	for(int k=0;k<100;k++)
+ 22e:	01 96       	adiw	r24, 0x01	; 1
+ 230:	84 36       	cpi	r24, 0x64	; 100
+ 232:	91 05       	cpc	r25, r1
+ 234:	c1 f7       	brne	.-16     	; 0x226 <uart_clear+0x8>
+	{
+		Resive[k]='\0';
+	}
+
+	brojcanik=-1;
+ 236:	8f ef       	ldi	r24, 0xFF	; 255
+ 238:	9f ef       	ldi	r25, 0xFF	; 255
+ 23a:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <brojcanik+0x1>
+ 23e:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <brojcanik>
+ 242:	08 95       	ret
+
+00000244 <__vector_13>:
+}
+
+ISR (USART_RXC_vect)
+{		
+ 244:	1f 92       	push	r1
+ 246:	0f 92       	push	r0
+ 248:	0f b6       	in	r0, 0x3f	; 63
+ 24a:	0f 92       	push	r0
+ 24c:	11 24       	eor	r1, r1
+ 24e:	8f 93       	push	r24
+ 250:	9f 93       	push	r25
+ 252:	ef 93       	push	r30
+ 254:	ff 93       	push	r31
+		brojcanik++;										
+ 256:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <brojcanik>
+ 25a:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <brojcanik+0x1>
+ 25e:	01 96       	adiw	r24, 0x01	; 1
+ 260:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <brojcanik+0x1>
+ 264:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <brojcanik>
+		if(brojcanik>99) brojcanik=99;											//ne daj prepunjavanje bafera
+ 268:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <brojcanik>
+ 26c:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <brojcanik+0x1>
+ 270:	84 36       	cpi	r24, 0x64	; 100
+ 272:	91 05       	cpc	r25, r1
+ 274:	34 f0       	brlt	.+12     	; 0x282 <__vector_13+0x3e>
+ 276:	83 e6       	ldi	r24, 0x63	; 99
+ 278:	90 e0       	ldi	r25, 0x00	; 0
+ 27a:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <brojcanik+0x1>
+ 27e:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <brojcanik>
+	
+		Resive[brojcanik]=UDR;
+ 282:	e0 91 64 00 	lds	r30, 0x0064	; 0x800064 <brojcanik>
+ 286:	f0 91 65 00 	lds	r31, 0x0065	; 0x800065 <brojcanik+0x1>
+ 28a:	8c b1       	in	r24, 0x0c	; 12
+ 28c:	e2 59       	subi	r30, 0x92	; 146
+ 28e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 290:	80 83       	st	Z, r24
+		
+		if(Resive[brojcanik]=='\r' || Resive[brojcanik]=='\n')
+ 292:	e0 91 64 00 	lds	r30, 0x0064	; 0x800064 <brojcanik>
+ 296:	f0 91 65 00 	lds	r31, 0x0065	; 0x800065 <brojcanik+0x1>
+ 29a:	e2 59       	subi	r30, 0x92	; 146
+ 29c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 29e:	80 81       	ld	r24, Z
+ 2a0:	8d 30       	cpi	r24, 0x0D	; 13
+ 2a2:	49 f0       	breq	.+18     	; 0x2b6 <__vector_13+0x72>
+ 2a4:	e0 91 64 00 	lds	r30, 0x0064	; 0x800064 <brojcanik>
+ 2a8:	f0 91 65 00 	lds	r31, 0x0065	; 0x800065 <brojcanik+0x1>
+ 2ac:	e2 59       	subi	r30, 0x92	; 146
+ 2ae:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2b0:	80 81       	ld	r24, Z
+ 2b2:	8a 30       	cpi	r24, 0x0A	; 10
+ 2b4:	81 f4       	brne	.+32     	; 0x2d6 <__vector_13+0x92>
+		{
+			Resive[brojcanik]='\0';
+ 2b6:	e0 91 64 00 	lds	r30, 0x0064	; 0x800064 <brojcanik>
+ 2ba:	f0 91 65 00 	lds	r31, 0x0065	; 0x800065 <brojcanik+0x1>
+ 2be:	e2 59       	subi	r30, 0x92	; 146
+ 2c0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2c2:	10 82       	st	Z, r1
+
+			brojcanik=-1;
+ 2c4:	8f ef       	ldi	r24, 0xFF	; 255
+ 2c6:	9f ef       	ldi	r25, 0xFF	; 255
+ 2c8:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <brojcanik+0x1>
+ 2cc:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <brojcanik>
+
+			ResivedOK=true;
+ 2d0:	81 e0       	ldi	r24, 0x01	; 1
+ 2d2:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <ResivedOK>
+		}	
+ 2d6:	ff 91       	pop	r31
+ 2d8:	ef 91       	pop	r30
+ 2da:	9f 91       	pop	r25
+ 2dc:	8f 91       	pop	r24
+ 2de:	0f 90       	pop	r0
+ 2e0:	0f be       	out	0x3f, r0	; 63
+ 2e2:	0f 90       	pop	r0
+ 2e4:	1f 90       	pop	r1
+ 2e6:	18 95       	reti
+
+000002e8 <_exit>:
+ 2e8:	f8 94       	cli
+
+000002ea <__stop_program>:
+ 2ea:	ff cf       	rjmp	.-2      	; 0x2ea <__stop_program>
