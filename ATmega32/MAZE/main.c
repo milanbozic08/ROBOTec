@@ -9,6 +9,7 @@
 #include "Uartavr.h"
 #include "PWMx.h"
 #include "HCSR04.h"
+#include "AnalogSenzor.h"
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
@@ -32,6 +33,8 @@ int main(void)
 
 	sei();					// OBAVEZNO (Ukljucuje prekide)
 	
+	//SharpRead();
+	//ColorRead();
 	
     while (1) 
     {
