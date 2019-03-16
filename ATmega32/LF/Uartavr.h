@@ -28,7 +28,7 @@
 extern volatile char Resive[];
 
 void Uart_inic();
-void uart_send_string(char *);
+void printf_string(char *);
 void printf_int(int);
 bool uart_full();
 void uart_clear();

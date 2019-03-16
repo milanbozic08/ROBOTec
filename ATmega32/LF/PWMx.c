@@ -94,10 +94,16 @@ void MotorR_Smer_Set(direction X)
 }
 void MotorL_PWM_Set(int X)
 {
+	if(X> (PWMRange-1) ) X=(PWMRange-1);
+	if(X<1) X=1;
+	
 	M_PWMLevi=X;
 }
 void MotorR_PWM_Set(int X)
 {
+	if(X> (PWMRange-1) ) X=(PWMRange-1);
+	if(X<1) X=1;
+	 
 	M_PWMDesni=X;
 }
 void MotorStart(bool X)
@@ -157,9 +163,6 @@ ISR(TIMER1_OVF_vect)			// motori su na 50Hz sa rasponom PWM od 0-1000 na f od 8M
 		M_Desni_ON();
 		M_TimerDesni=0;
 	}
-
-
-
 
 	sei();
 }

@@ -10,23 +10,23 @@
 #define PWM_H_
 
 #include <stdbool.h>
-#define PWMRange 1000
+#define PWMRange 1000			// Vrednost u tajmeru , nije ovo PWM
 
-#define DDR DDRA
+#define DDR DDRD
 #define M1	4
 #define M2	5
 #define M3	6
 #define M4	7
 
-#define M1_1OFF PORTA&=~(1<<4)
-#define M1_2OFF PORTA&=~(1<<5)
-#define M2_1OFF PORTA&=~(1<<6)
-#define M2_2OFF PORTA&=~(1<<7) 
+#define M1_1OFF PORTD&=~(1<<4)
+#define M1_2OFF PORTD&=~(1<<5)
+#define M2_1OFF PORTD&=~(1<<6)
+#define M2_2OFF PORTD&=~(1<<7) 
 
-#define M1_1ON PORTA |=(1<<4)
-#define M1_2ON PORTA |=(1<<5)
-#define M2_1ON PORTA |=(1<<6)
-#define M2_2ON PORTA |=(1<<7)
+#define M1_1ON PORTD |=(1<<4)
+#define M1_2ON PORTD |=(1<<5)
+#define M2_1ON PORTD |=(1<<6)
+#define M2_2ON PORTD |=(1<<7)
 
 typedef enum
 {

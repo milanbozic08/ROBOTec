@@ -12,3 +12,5 @@ Senzori.c
 
 UartAVRc.c
 
+UARTHendler.c
+
