@@ -29,9 +29,6 @@ int main(void)
 	HCSR04_Timer2_init();
 	HCSR04Init();
 	////////////////
-	
-	_delay_ms(10);
-	uart_send_string("Start");		//UART TEST
 
 	sei();					// OBAVEZNO (Ukljucuje prekide)
 	

@@ -119,7 +119,6 @@ void MotorR_Setup(direction SMER,int PWM)
 
 ISR(TIMER1_OVF_vect)			// motori su na 50Hz sa rasponom PWM od 0-1000 na f od 8Mhz
 {
-	
 	cli();
 	
 	TCNT1 = 65536-20;
