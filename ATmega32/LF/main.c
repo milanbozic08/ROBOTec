@@ -8,6 +8,7 @@
 #include <avr/io.h>
 #include "Uartavr.h"
 #include "PWMx.h"
+#include "Senzori.h"
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
@@ -29,7 +30,7 @@ int main(void)
 	
     while (1) 
     {
-	
+		
 	}
 }
 

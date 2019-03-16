@@ -6,5 +6,9 @@ main.c
 
 PWMx.c
 
+Regulacije.c
+
+Senzori.c
+
 UartAVRc.c
 
