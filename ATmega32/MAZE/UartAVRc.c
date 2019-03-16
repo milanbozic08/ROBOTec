@@ -54,7 +54,7 @@ void printf_int(int Num)
 }
 
 
-void uart_send_string(char *Str)
+void printf_string(char *Str)
 {
 	int x=strlen(Str),n=0;
 	for(n=0;n<x;n++)
