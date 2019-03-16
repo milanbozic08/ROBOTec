@@ -9,6 +9,7 @@
 
 #include "Uartavr.h"
 #include <avr/interrupt.h>
+#include <stdio.h>
 
 
 volatile char Resive[100];
@@ -29,7 +30,7 @@ void Uart_inic()
 	UCSRB |= (1 << RXCIE);                   // Enable the receiver interrupt
 	UCSRC |= (1 << URSEL) |(1 << UCSZ1) | (1 << UCSZ0);    // Set frame: 8data, 1 stp
 	
-	sei();
+	//sei();
 	
 	
 	for(int k=0;k<100;k++)
@@ -49,7 +50,7 @@ void printf_int(int Num)
 
 	sprintf((char*)Str,"%d \n",Num);
 
-	uart_send_string(Str);
+	uart_send_string((char *)Str);
 }
 
 

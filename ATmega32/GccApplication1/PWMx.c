@@ -14,7 +14,11 @@ long int tmr=0;
 volatile direction SmerL=CW, SmerR=CW;
 volatile int M_PWMLevi=10,M_PWMDesni=10;
 volatile bool EnableMotors=false;
+
 volatile int M_TimerLevi=0,M_TimerDesni=0;
+
+
+
 
 void timer1_init() // Svakih 1mS na 8MHz
 {
@@ -28,12 +32,13 @@ void timer1_init() // Svakih 1mS na 8MHz
 	TIMSK |= (1 << TOIE1);
 
 }
+
 void Motor_init()
 {
-	DDR |=(1<<4);
-	DDR |=(1<<5);
-	DDR |=(1<<6);
-	DDR |=(1<<7);
+	DDR |=(1<<M1);
+	DDR |=(1<<M2);
+	DDR |=(1<<M3);
+	DDR |=(1<<M4);
 	
 	M1_1OFF;
 	M1_2OFF;
@@ -100,11 +105,23 @@ void MotorStart(bool X)
 	EnableMotors=X;
 }
 
+void MotorL_Setup(direction SMER,int PWM)
+{
+	MotorL_Smer_Set(SMER);
+	MotorL_PWM_Set(PWM);
+}
+void MotorR_Setup(direction SMER,int PWM)
+{
+	MotorR_Smer_Set(SMER);
+	MotorR_PWM_Set(PWM);
+}
+
 
 ISR(TIMER1_OVF_vect)			// motori su na 50Hz sa rasponom PWM od 0-1000 na f od 8Mhz
 {
 	
 	cli();
+	
 	TCNT1 = 65536-20;
 	
 	

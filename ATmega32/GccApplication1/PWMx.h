@@ -13,6 +13,11 @@
 #define PWMRange 1000
 
 #define DDR DDRA
+#define M1	4
+#define M2	5
+#define M3	6
+#define M4	7
+
 #define M1_1OFF PORTA&=~(1<<4)
 #define M1_2OFF PORTA&=~(1<<5)
 #define M2_1OFF PORTA&=~(1<<6)
@@ -29,17 +34,21 @@ typedef enum
 	CCW,
 }   direction;
 
+/// MASTER FUNCTION ////////////
 
 
 void timer1_init();
 void Motor_init();
 
-void MotorL_Smer_Set(direction);				// Menjanje smera motorima (CW,CCW)
-void MotorR_Smer_Set(direction);
-
-void MotorL_PWM_Set(int);						// Podesavanje PWM motora (1-999) **Bez zastite !!
-void MotorR_PWM_Set(int);
+void MotorL_Setup(direction SMER,int PWM);
+void MotorR_Setup(direction SMER,int PWM);
 
 void MotorStart(bool);							// Master Start(True) / Stop(false)
+
+/////////////////////////////////////////////
+
+
+
+
 
 #endif /* PWM_H_ */

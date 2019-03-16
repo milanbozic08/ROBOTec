@@ -15,27 +15,30 @@
 
 int main(void)
 {
-	//_delay_ms(100);
+	////UART INIT
 	uart_clear();
 	Uart_inic();
+	////////////////
+	
+	///MOTOR INIT
 	timer1_init();
-	StartTimer();
-	HCSR04Init();
 	Motor_init();
-	MotorStart(true);
-	MotorL_PWM_Set(100);
-	MotorR_PWM_Set(100);
+	///////////////////
+	
+	///HCRS04 INIT
+	HCSR04_Timer2_init();
+	HCSR04Init();
+	////////////////
 	
 	_delay_ms(10);
-	uart_send_string("Start");
-    /* Replace with your application code */
-	sei();
+	uart_send_string("Start");		//UART TEST
+
+	sei();					// OBAVEZNO (Ukljucuje prekide)
+	
+	
     while (1) 
     {
-			
-	//printf_int(HCSR_04());
-
-		
-    }
+	
+	}
 }
 
