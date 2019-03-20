@@ -37,7 +37,6 @@ int main(void)
 
 	sei();					// OBAVEZNO (Ukljucuje prekide)
 	
-	
     while (1) 
     {
 		if(uart_full())
@@ -46,12 +45,12 @@ int main(void)
 			uart_clear();
 		}
 		
- 		/*KontrolaMotora();
- 		_delay_us(10);*/
+ 		KontrolaMotora();
+ 		_delay_us(10);
 		 
 		 
-		/*
-		MotorL_Setup(CW,200);
+		
+		/*MotorL_Setup(CW,200);
 		MotorR_Setup(CW,200);
 		_delay_ms(2000);
 		
@@ -65,12 +64,11 @@ int main(void)
 		
 		MotorL_Setup(CCW,1);
 		MotorR_Setup(CCW,1);
-		_delay_ms(2000);
-		 */
-		
+		_delay_ms(2000);*/
+		 
+		/*
 		printf_int(ReadOptoSenzor());
-		printf_string("\n");
-		_delay_ms(200);
+		_delay_ms(30);*/
 		
 	}
 }

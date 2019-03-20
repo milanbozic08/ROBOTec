@@ -30,7 +30,7 @@ void Uart_inic()
 	UCSRB |= (1 << RXCIE);                   // Enable the receiver interrupt
 	UCSRC |= (1 << URSEL) |(1 << UCSZ1) | (1 << UCSZ0);    // Set frame: 8data, 1 stp
 	
-	//sei();
+	sei();
 	
 	
 	for(int k=0;k<100;k++)
