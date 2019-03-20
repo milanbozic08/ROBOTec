@@ -13,6 +13,7 @@
 
 
 volatile char Resive[100];
+
 volatile bool ResivedOK=false;
 volatile int brojcanik=-1;
 
@@ -29,15 +30,7 @@ void Uart_inic()
 	UCSRB |= (1 << RXEN) | (1 << TXEN);      // Enable receiver and transmitter
 	UCSRB |= (1 << RXCIE);                   // Enable the receiver interrupt
 	UCSRC |= (1 << URSEL) |(1 << UCSZ1) | (1 << UCSZ0);    // Set frame: 8data, 1 stp
-	
-	//sei();
-	
-	
-	for(int k=0;k<100;k++)
-	{
-		Resive[k]='\0';
-	}	  
-	
+
 }
 
 void printf_int(int Num)
@@ -50,7 +43,7 @@ void printf_int(int Num)
 
 	sprintf((char*)Str,"%d \n",Num);
 
-	uart_send_string((char *)Str);
+	printf_string((char *)Str);
 }
 
 
@@ -94,7 +87,7 @@ ISR (USART_RXC_vect)
 		{
 			Resive[brojcanik]='\0';
 
-			brojcanik=-1;
+			//brojcanik=-1;
 
 			ResivedOK=true;
 		}	

@@ -9,10 +9,12 @@
 #ifndef SHARP_H_
 #define SHARP_H_
 
+#include <stdbool.h>
+
 #define SharpPin 0
 #define ColorPin 1
 
 int SharpRead();
-int ColorRead();
+bool ColorRead();
 
 #endif /* SHARP_H_ */

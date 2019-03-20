@@ -133,6 +133,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Encoder.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Encoder.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HCSR04.c">
       <SubType>compile</SubType>
     </Compile>
@@ -148,10 +154,28 @@
     <Compile Include="PWMx.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="AnalogSenzor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="AnalogSenzor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Regulacije.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Regulacije.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Uartavr.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="UartAVRc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="UARTHendler.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="UARTHendler.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

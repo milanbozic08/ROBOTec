@@ -5,6 +5,10 @@
  *  Author: milan
  */ 
 #include "AnalogSenzor.h"
+#include <math.h>
+#include <stdint.h>
+#include <avr/io.h>
+#include <stdbool.h>
 
 int ADCsingleREAD(uint8_t adctouse) //adctouse koji pin treba da se obradi
 {
@@ -30,10 +34,15 @@ int ADCsingleREAD(uint8_t adctouse) //adctouse koji pin treba da se obradi
 
 int SharpRead()
 {
-	return ADCsingleREAD(SharpPin);
+	int ADx= ADCsingleREAD(SharpPin);
+	float data= 0.0002*ADx*ADx-0.1316*ADx+30.97; //28594*ADx^(-1.501);
+	
+	return (int)data;
 }
-int ColorRead()
+bool ColorRead()
 {
-	return ADCsingleREAD(ColorPin);
-}
+	if(ADCsingleREAD(ColorPin)>500)		//Ako je vece od 500 to je crno ...
+	return true;	
+	return false;				
 
+}

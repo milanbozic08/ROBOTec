@@ -35,10 +35,10 @@ void timer1_init() // Svakih 1mS na 8MHz
 
 void Motor_init()
 {
-	DDR |=(1<<M1);
-	DDR |=(1<<M2);
-	DDR |=(1<<M3);
-	DDR |=(1<<M4);
+	DDRA |=(1<<7);
+	DDRA |=(1<<6);
+	DDRA |=(1<<5);
+	DDRA |=(1<<4);
 	
 	M1_1OFF;
 	M1_2OFF;
@@ -48,12 +48,12 @@ void Motor_init()
 
 void M_Levi_OFF()
 {
-	M1_1OFF;
-	M1_2OFF;
+	M1_1ON;
+	M1_2ON;
 }
 void M_Levi_ON()
 {
-	if(SmerL==CW)
+	if(SmerL==CCW)
 	{
 		M1_1OFF;
 		M1_2ON;
@@ -67,12 +67,12 @@ void M_Levi_ON()
 }
 void M_Desni_OFF()
 {
-	M2_2OFF;
-	M2_1OFF;
+	M2_2ON;
+	M2_1ON;
 }
 void M_Desni_ON()
 {
-	if(SmerR==CW)
+	if(SmerR==CCW)
 	{
 		M2_1OFF;
 		M2_2ON;
@@ -94,10 +94,16 @@ void MotorR_Smer_Set(direction X)
 }
 void MotorL_PWM_Set(int X)
 {
+	if(X> (PWMRange-1) ) X=(PWMRange-1);
+	if(X<1) X=1;
+	
 	M_PWMLevi=X;
 }
 void MotorR_PWM_Set(int X)
 {
+	if(X> (PWMRange-1) ) X=(PWMRange-1);
+	if(X<1) X=1;
+	 
 	M_PWMDesni=X;
 }
 void MotorStart(bool X)
@@ -157,9 +163,6 @@ ISR(TIMER1_OVF_vect)			// motori su na 50Hz sa rasponom PWM od 0-1000 na f od 8M
 		M_Desni_ON();
 		M_TimerDesni=0;
 	}
-
-
-
 
 	sei();
 }
